@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/editTextTextPersonName4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="SELECTED RESTUARANT"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="68dp" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="222dp"
+        android:layout_height="188dp"
+        app:srcCompat="@drawable/ic_launcher_background"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="151dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Directions"
+        tools:layout_editor_absoluteX="126dp"
+        tools:layout_editor_absoluteY="483dp" />
+
+    <Switch
+        android:id="@+id/Saveswitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Save to favorites"
+        android:thumbTint="#4CAF50"
+        tools:layout_editor_absoluteX="130dp"
+        tools:layout_editor_absoluteY="551dp" />
+
+    <Button
+        android:id="@+id/button6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rate"
+        tools:layout_editor_absoluteX="161dp"
+        tools:layout_editor_absoluteY="602dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Average Rating:"
+        tools:layout_editor_absoluteX="156dp"
+        tools:layout_editor_absoluteY="379dp" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="231dp"
+        android:layout_height="46dp"
+        tools:layout_editor_absoluteX="94dp"
+        tools:layout_editor_absoluteY="416dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

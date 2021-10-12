@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="204dp"
+        android:layout_height="80dp"
+        android:backgroundTint="#2196F3"
+        android:text="Find a place to eat!"
+        app:iconTint="#E91E63"
+        tools:layout_editor_absoluteX="103dp"
+        tools:layout_editor_absoluteY="184dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="207dp"
+        android:layout_height="72dp"
+        android:backgroundTint="#4CAF50"
+        android:text="Favorites"
+        tools:layout_editor_absoluteX="102dp"
+        tools:layout_editor_absoluteY="374dp" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="122dp"
+        android:layout_height="66dp"
+        android:text="Settings"
+        tools:layout_editor_absoluteX="144dp"
+        tools:layout_editor_absoluteY="583dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
