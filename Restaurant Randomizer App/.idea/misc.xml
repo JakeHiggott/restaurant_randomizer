@@ -9,7 +9,15 @@
         <entry key="app/src/main/res/layout/Rate.xml" value="0.5" />
         <entry key="app/src/main/res/layout/RestuarantPage.xml" value="0.5" />
         <entry key="app/src/main/res/layout/Settings.xml" value="0.5911458333333334" />
+        <entry key="app/src/main/res/layout/activity_favorites.xml" value="0.1879432624113475" />
+        <entry key="app/src/main/res/layout/activity_findrestuarant.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_rate.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/activity_restuarantpage.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.43854166666666666" />
+        <entry key="app/src/main/res/layout/fragment_first.xml" value="0.223731884057971" />
         <entry key="app/src/main/res/layout/mainactivity.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/restuarantpage.xml" value="0.1879432624113475" />
+        <entry key="app/src/main/res/layout/settings.xml" value="0.45260416666666664" />
       </map>
     </option>
   </component>
