@@ -10,6 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TipCalculator">
         <activity
+            android:name=".settings"
+            android:exported="true" />
+        <activity
+            android:name=".favorites"
+            android:exported="true" />
+        <activity
+            android:name=".rate"
+            android:exported="true" />
+        <activity
+            android:name=".restuarantpage"
+            android:exported="true" />
+        <activity
+            android:name=".findrestuarant"
+            android:exported="true" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
@@ -21,5 +36,3 @@
     </application>
 
 </manifest>
-
-
