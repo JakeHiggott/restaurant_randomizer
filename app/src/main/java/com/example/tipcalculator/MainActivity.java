@@ -2,48 +2,33 @@ package com.example.tipcalculator;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-    //initialize variables
-    Button SearchdisplayButton = findViewById(R.id.goToFindRestuarant);
-    Button ListdisplayButton = findViewById(R.id.goToFindRestuarant2);
-    Button SettingsdisplayButton = findViewById(R.id.settingsButton);
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.mainactivity);
-        SearchdisplayButton.setOnClickListener(findRestaurant());
-        ListdisplayButton.setOnClickListener(favorites());
-        SettingsdisplayButton.setOnClickListener(settings());
+        favorites();
+        findRestaurant();
+        settings();
 
 
     }
-    public View.OnClickListener findRestaurant() {
-
-        startActivity(new Intent(MainActivity.this, findrestuarant.class));
-
-        return null;
+    private void findRestaurant() {
+        Button displayButton = findViewById(R.id.goToFindRestaurant);
+        displayButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, findrestuarant.class)));
     }
-
-    public View.OnClickListener favorites() {
-
-        startActivity(new Intent(MainActivity.this, favorites.class));
-
-        return null;
+    private void favorites() {
+        Button displayButton = findViewById(R.id.goToFindRestaurant2);
+        displayButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, favorites.class)));
     }
-
-    public View.OnClickListener settings() {
-
-        startActivity(new Intent(MainActivity.this, settings.class));
-
-        return null;
+    private void settings() {
+        Button displayButton = findViewById(R.id.settingsButton);
+        displayButton.setOnClickListener(view -> startActivity(new Intent(MainActivity.this, settings.class)));
     }
-
     /*
     private void init18Button() {
         Button displayButton = findViewById(R.id.button18);
@@ -53,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
                 EditText editTextEnterTotal = findViewById(R.id.enterMoneyText);
                 TextView tipAmountDisplay = findViewById(R.id.tipAmountText);
                 String totalText = editTextEnterTotal.getText().toString();
-
                 //Just a Quick note I was unsure how to change the value from a String to a Double/ Float to do calculations so I looked it up.
                 //I Found the code below from here: https://www.quora.com/How-would-I-get-an-int-value-from-an-edit-text-view-in-Android-studio
                 //It shows how to do it with integers but I just swapped integer for double and it works fine.
@@ -66,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
     private void init20Button() {
         Button displayButton = findViewById(R.id.button20);
         displayButton.setOnClickListener(new View.OnClickListener() {
@@ -75,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
                 EditText editTextEnterTotal = findViewById(R.id.enterMoneyText);
                 TextView tipAmountDisplay = findViewById(R.id.tipAmountText);
                 String totalText = editTextEnterTotal.getText().toString();
-
                 //Just a Quick note I was unsure how to change the value from a String to a Double/ Float to do calculations so I looked it up.
                 //I Found the code below from here: https://www.quora.com/How-would-I-get-an-int-value-from-an-edit-text-view-in-Android-studio
                 //It shows how to do it with integers but I just swapped integer for double and it works fine.
@@ -88,6 +70,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
      */
 }

@@ -7,11 +7,11 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/goToFindRestuarant2"
+        android:id="@+id/goToFindRestaurant2"
         android:layout_width="194dp"
         android:layout_height="73dp"
         android:backgroundTint="#4FAF4C"
-        android:text="@string Favorites"
+        android:text="@string/favorites"
         app:iconTint="#E91E63"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,12 +20,12 @@
         tools:ignore="TextContrastCheck" />
 
     <Button
-        android:id="@+id/goToFindRestuarant"
+        android:id="@+id/goToFindRestaurant"
         android:layout_width="204dp"
         android:layout_height="80dp"
         android:layout_marginTop="140dp"
         android:backgroundTint="#2196F3"
-        android:text="@string Find a place to eat!"
+        android:text="@string/find_a_place_to_eat"
         app:iconTint="#E91E63"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -38,7 +38,7 @@
         android:layout_width="122dp"
         android:layout_height="66dp"
         android:layout_marginBottom="148dp"
-        android:text="@string Settings"
+        android:text="@string/settings"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
