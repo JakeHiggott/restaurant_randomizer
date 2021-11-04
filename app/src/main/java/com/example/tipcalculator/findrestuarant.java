@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class findrestuarant extends AppCompatActivity {
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,10 +31,17 @@ public class findrestuarant extends AppCompatActivity {
     private void FRSearchButton() {
         Button displayButton = findViewById(R.id.frSearchButton);
         displayButton.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
+                new Calculate();
                 startActivity(new Intent(findrestuarant.this, restuarantpage.class));
             }
         });
     }
+
+
+
+
 }
