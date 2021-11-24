@@ -38,6 +38,7 @@ public class findrestuarant extends AppCompatActivity {
     FusedLocationProviderClient fusedLocationProviderClient;
     Location MockLocation;
     private Object CancellationToken;
+    Globals g = Globals.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,13 +123,15 @@ public class findrestuarant extends AppCompatActivity {
             try {
                 Geocoder geocoder = new Geocoder(findrestuarant.this, Locale.getDefault());
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                //g.setLatitude(addresses.get(0).getLatitude());
+                //g.setLongitude(addresses.get(0).getLongitude());
                 textView12.setText("TEMPORARY Latitude: " + addresses.get(0).getLatitude());
                 textView13.setText("TEMPORARY Longitude: " + addresses.get(0).getLongitude());
-                //new API(addresses.get(0).getLatitude(),addresses.get(0).getLongitude());
                 new API(addresses.get(0).getLatitude(),addresses.get(0).getLongitude());
+                //new API();
 
 
-            } catch (IOException | JSONException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }else{
