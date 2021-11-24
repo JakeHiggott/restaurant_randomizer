@@ -1,19 +1,15 @@
 package com.example.tipcalculator;
 
-import static com.google.android.gms.location.LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.location.LocationManager;
 import android.location.LocationRequest;
 import android.os.Bundle;
 import android.view.View;
@@ -23,15 +19,17 @@ import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.CancellationToken;
-import com.google.android.gms.tasks.CancellationTokenSource;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 
+import org.json.JSONException;
+
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
+
+import okhttp3.Response;
 
 public class findrestuarant extends AppCompatActivity {
 
@@ -65,8 +63,8 @@ public class findrestuarant extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Boolean switchState = switch1.isChecked();
-                if(switchState == true){
+                boolean switchState = switch1.isChecked();
+                if(switchState){
                     if(ActivityCompat.checkSelfPermission(findrestuarant.this,
                             Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
                         getLocation();
@@ -126,9 +124,11 @@ public class findrestuarant extends AppCompatActivity {
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                 textView12.setText("TEMPORARY Latitude: " + addresses.get(0).getLatitude());
                 textView13.setText("TEMPORARY Longitude: " + addresses.get(0).getLongitude());
-                new Zomato();
+                //new API(addresses.get(0).getLatitude(),addresses.get(0).getLongitude());
+                new API();
 
-            } catch (IOException e) {
+
+            } catch (IOException | JSONException e) {
                 e.printStackTrace();
             }
         }else{
@@ -139,8 +139,8 @@ public class findrestuarant extends AppCompatActivity {
     }
 
     private void ButtonCheck() {
-        Boolean switchState = switch1.isChecked();
-        if(switchState == true){
+        boolean switchState = switch1.isChecked();
+        if(switchState){
             textView5.setText("Using device's location");
         }else{
             textView5.setText("Using custom location");

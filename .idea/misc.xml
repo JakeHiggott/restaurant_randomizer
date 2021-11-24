@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/micha/Documents/GitHub/2nd/app/src/main/res/layout/activity_findrestuarant.xml" value="0.38645833333333335" />
+        <entry key="..\:/Users/micha/Documents/GitHub/2nd/app/src/main/res/layout/activity_settings.xml" value="0.3723958333333333" />
         <entry key="..\:/Users/micha/StudioProjects/restaurant_randomizer/app/src/main/res/layout/activity_findrestuarant.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_favorites.xml" value="0.24924012158054712" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="JDK" project-jdk-type="JavaSDK" />
 </project>
