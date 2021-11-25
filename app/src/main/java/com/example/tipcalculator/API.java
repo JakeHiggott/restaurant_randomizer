@@ -2,17 +2,7 @@ package com.example.tipcalculator;
 
 import android.os.StrictMode;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
-
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
 
 public class API {
 
@@ -23,7 +13,7 @@ public class API {
         ArrayList<String> RestaurantPhoto = new ArrayList<>();
 
 
-        public API(){
+        API(){
             double lat,longi;
             Globals g = Globals.getInstance();
             lat = g.getLatitude();
@@ -31,7 +21,7 @@ public class API {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
-            OkHttpClient client = new OkHttpClient();
+            /*OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
                     .url("https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude="+ lat +"&longitude=" + longi + "&distance=1&open_now=true&lunit=mi")
@@ -59,15 +49,30 @@ public class API {
                     RestaurantPhoto.add(thumbP.getString("url"));
                 }
             } catch (JSONException | IOException e) {
+                return false;
                 e.printStackTrace();
             }
+*/
 
+            //temporary data
+            RestaurantId.add(00000);
+            RestaurantName.add("Testing1");
+            Restaurantlat.add(37.45);
+            Restaurantlongi.add(150.7);
+            RestaurantPhoto.add("random1");
+
+            RestaurantId.add(00001);
+            RestaurantName.add("Testing2");
+            Restaurantlat.add(60.55);
+            Restaurantlongi.add(40.23);
+            RestaurantPhoto.add("random2");
 
             g.setRestaurantID(RestaurantId);
             g.setRestaurantName(RestaurantName);
             g.setRestaurantlat(Restaurantlat);
             g.setRestaurantlongi(Restaurantlongi);
             g.setRestaurantPhoto(RestaurantPhoto);
+
 
         }
 

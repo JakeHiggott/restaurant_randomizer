@@ -12,6 +12,7 @@ public class Globals {
     private ArrayList<String> RestaurantPhoto;
     private double Longitude;
     private double Latitude;
+    private int RandomIndex;
 
     private Globals(){}
     //set global variables following set and get function pattern
@@ -68,6 +69,14 @@ public class Globals {
 
     public double getLongitude(){
         return this.Longitude;
+    }
+
+    public int getRandomIndex() {
+        return RandomIndex;
+    }
+
+    public void setRandomIndex(int randomIndex) {
+        this.RandomIndex = randomIndex;
     }
 
     public static synchronized Globals getInstance(){

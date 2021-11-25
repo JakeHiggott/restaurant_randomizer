@@ -23,13 +23,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 
-import org.json.JSONException;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
-
-import okhttp3.Response;
 
 public class findrestuarant extends AppCompatActivity {
 
@@ -128,6 +124,11 @@ public class findrestuarant extends AppCompatActivity {
                 textView12.setText("TEMPORARY Latitude: " + addresses.get(0).getLatitude());
                 textView13.setText("TEMPORARY Longitude: " + addresses.get(0).getLongitude());
                 new API();
+                new Randomizer();
+
+
+
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
