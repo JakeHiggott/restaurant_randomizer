@@ -128,8 +128,6 @@ public class findrestuarant extends AppCompatActivity {
                 textView12.setText("TEMPORARY Latitude: " + addresses.get(0).getLatitude());
                 textView13.setText("TEMPORARY Longitude: " + addresses.get(0).getLongitude());
                 new API();
-
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
