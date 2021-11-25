@@ -42,6 +42,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-crashlytics-buildtools:2.8.0'
     //implementation 'com.squareup.okhttp3:okhttp-android-support:3.13.1'
     implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
+    implementation 'com.growingio.android:okhttp3:3.3.2'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
