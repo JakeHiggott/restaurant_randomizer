@@ -2,6 +2,7 @@ package com.example.tipcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -50,12 +51,15 @@ public class rate extends AppCompatActivity {
 
         pic.setImageBitmap(bm);
         Name.setText(AllName.get(g.getRandomIndex()));
+        RatingBar Rating = findViewById(R.id.ratingBar2);
+        Rating.setRating(3);
 
         Button SaveButton = findViewById(R.id.button5);
         SaveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SaveRating(SelectedID);
+                finish();
             }
         });
         Button BackButton = findViewById(R.id.rateBackButton);
@@ -76,22 +80,19 @@ public class rate extends AppCompatActivity {
         double score = 0;
         if(Rating.getRating()==1){
             score = -0.2;
-        }
-        if(Rating.getRating()==1){
+        }else if(Rating.getRating()==2){
             score = -0.1;
-        }
-        if(Rating.getRating()==1){
+        }else if(Rating.getRating()==3){
             score = 0;
-        }
-        if(Rating.getRating()==1){
+        }else if(Rating.getRating()==4){
             score = 0.1;
-        }
-        if(Rating.getRating()==1){
+        }else if(Rating.getRating()==5){
             score = 0.2;
         }
 
-        if(DB.insertData(selectedID,score)){
-            DB.updateData(selectedID,score);
+        if(!DB.updateData(selectedID,score)){
+
+            DB.insertData(selectedID,score);
         }
 
     }

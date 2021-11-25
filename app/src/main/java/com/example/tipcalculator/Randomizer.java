@@ -3,7 +3,10 @@ package com.example.tipcalculator;
 
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -15,21 +18,24 @@ public class Randomizer extends AppCompatActivity {
     Randomizer(){
         Globals g = Globals.getInstance();
         ArrayList<Integer> Selected =  g.getRestaurantID();
-        ArrayList<Double> weights = null;
+        ArrayList<Double> weights = new ArrayList<>();
         DatabaseHelper DB = new DatabaseHelper(this);
         double check = 0;
         int size = Selected.size();
 
         double OChance = 100/size;
         for(int i = 0; i != Selected.size();i++){
-            if(DB.checkScore(Selected.get(i))){
-                double scale = OChance* DB.getScore(Selected.get(i));
+            int RID = Selected.get(i);
+
+            if(DB.checkScore()){
+                double scale = OChance* DB.getScore(RID);
                 double NChance = OChance + scale;
-                weights.add(i,NChance);
+                weights.add(NChance);
                 check = NChance + check;
             }
             else{
-                check = OChance;
+                weights.add(OChance);
+                check = OChance + check;
             }
         }
 
@@ -46,18 +52,18 @@ public class Randomizer extends AppCompatActivity {
 
 
 
-        startActivity(new Intent(this, rate.class));
+
     }
 
     private int ChooseRandom(ArrayList<Double> weights) {
 
-        int indexSelection = 1;
-        int index = 1;
+        int indexSelection = 0;
+        int index = 0;
         Random rand = new Random();
         int RandNum = rand.nextInt(101);
         double AddAmount=0;
 
-        for(int k=0;k != 100; k++){
+        for(int k=1;k != 100; k++){
             if(RandNum == k){
                 indexSelection = index;
                 return indexSelection;
