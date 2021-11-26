@@ -2,11 +2,14 @@ package com.example.tipcalculator;
 
 
 
+import static com.google.android.material.internal.ContextUtils.getActivity;
+
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.SQLException;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,7 +22,8 @@ public class Randomizer extends AppCompatActivity {
         Globals g = Globals.getInstance();
         ArrayList<Integer> Selected =  g.getRestaurantID();
         ArrayList<Double> weights = new ArrayList<>();
-        DatabaseHelper DB = new DatabaseHelper(this);
+        ArrayList<Double> Saved = g.getChoosenScores();
+
         double check = 0;
         int size = Selected.size();
 
@@ -27,17 +31,14 @@ public class Randomizer extends AppCompatActivity {
         for(int i = 0; i != Selected.size();i++){
             int RID = Selected.get(i);
 
-            if(DB.checkScore()){
-                double scale = OChance* DB.getScore(RID);
+                double scale = OChance* Saved.get(RID);
                 double NChance = OChance + scale;
                 weights.add(NChance);
                 check = NChance + check;
-            }
-            else{
-                weights.add(OChance);
-                check = OChance + check;
-            }
+
+
         }
+
 
         if(check != 100){
            double evening = 100-check;

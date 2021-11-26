@@ -10,9 +10,11 @@ public class Globals {
     private ArrayList<Double> Restaurantlat;
     private ArrayList<Double> Restaurantlongi;
     private ArrayList<String> RestaurantPhoto;
+    private ArrayList<Double> ChoosenScores;
     private double Longitude;
     private double Latitude;
     private int RandomIndex;
+
 
     private Globals(){}
     //set global variables following set and get function pattern
@@ -25,6 +27,14 @@ public class Globals {
 
     public void setRestaurantName(ArrayList<String> restaurantName) {
         this.RestaurantName = restaurantName;
+    }
+
+    public void setChoosenScores(ArrayList<Double> choosenScores) {
+        ChoosenScores = choosenScores;
+    }
+
+    public ArrayList<Double> getChoosenScores() {
+        return ChoosenScores;
     }
 
     public ArrayList<String> getRestaurantName(){

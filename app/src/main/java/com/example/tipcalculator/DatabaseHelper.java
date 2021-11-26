@@ -6,10 +6,13 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.graphics.Path;
+import android.util.Log;
 
 import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
+    SQLiteDatabase DB;
     public DatabaseHelper( Context context) {
         super(context, "RestaurantData.db", null, 1);
     }
@@ -25,8 +28,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists RestaurantData");
     }
 
+    public void Open() throws SQLException {
+
+        DB = this.getWritableDatabase();
+    }
+
+    public void Close(){
+        DB.close();
+    }
+
     public Boolean insertData(int RestaurantID,double score ){
-        SQLiteDatabase DB = this.getWritableDatabase();
+        Open();
         ContentValues contentValues = new ContentValues();
         contentValues.put("RestaurantID",RestaurantID);
         contentValues.put("score",score);
@@ -40,7 +52,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public Boolean updateData(int RestaurantID,double score ) {
         int location = 0;
-        SQLiteDatabase DB = this.getWritableDatabase();
+        Open();
         Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
 
 
@@ -67,28 +79,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
     public Cursor getData(){
-        SQLiteDatabase DB = this.getWritableDatabase();
+        Open();
         Cursor cursor = DB.rawQuery("Select * from RestaurantData",null);
         return cursor;
     }
 
-    public double getScore(int RestaurantID){
-        SQLiteDatabase DB = this.getWritableDatabase();
+    public double getScores(int RestaurantID){
+        Open();
         Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
-        double score = cursor.getDouble(0);
-        return score;
+        if(cursor.moveToFirst()){
+            double score = cursor.getDouble(0);
+            return score;
+        }
+
+        return 0;
     }
 
     public boolean checkScore() {
-        try {
-            SQLiteDatabase DB = this.getReadableDatabase();
+
+            Open();
             Cursor cursor = DB.rawQuery("Select * from RestaurantData", null);
             if (cursor.moveToFirst()) {
                 return true;
+            }else{
+                return false;
             }
-        } finally {
-            return false;
-        }
 
 
     }

@@ -76,6 +76,7 @@ public class rate extends AppCompatActivity {
 
     void SaveRating(int selectedID){
         RatingBar Rating = findViewById(R.id.ratingBar2);
+        Globals g = Globals.getInstance();
         DatabaseHelper DB = new DatabaseHelper(this);
         double score = 0;
         if(Rating.getRating()==1){
@@ -94,7 +95,7 @@ public class rate extends AppCompatActivity {
 
             DB.insertData(selectedID,score);
         }
-
+        DB.close();
     }
 
 }

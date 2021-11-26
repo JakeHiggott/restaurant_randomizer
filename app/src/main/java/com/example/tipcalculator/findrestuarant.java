@@ -25,6 +25,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -125,6 +126,7 @@ public class findrestuarant extends AppCompatActivity {
                 textView12.setText("TEMPORARY Latitude: " + addresses.get(0).getLatitude());
                 textView13.setText("TEMPORARY Longitude: " + addresses.get(0).getLongitude());
                 new API();
+                GetSavedScores();
                 new Randomizer();
                 startActivity(new Intent(findrestuarant.this, rate.class));
                 finish();
@@ -138,6 +140,18 @@ public class findrestuarant extends AppCompatActivity {
         }
 
     return 0;
+    }
+
+    private void GetSavedScores() {
+        DatabaseHelper DB = new DatabaseHelper(this);
+        ArrayList<Integer> scores = g.getRestaurantID();
+        ArrayList<Double> set = new ArrayList<>();
+
+        for(int i =0; i != scores.size();i++){
+            set.add(DB.getScores(scores.get(i))) ;
+        }
+        g.setChoosenScores(set);
+
     }
 
     private void ButtonCheck() {
