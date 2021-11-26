@@ -14,6 +14,7 @@ public class Globals {
     private double Longitude;
     private double Latitude;
     private int RandomIndex;
+    public boolean BackButton = false;
 
 
     private Globals(){}

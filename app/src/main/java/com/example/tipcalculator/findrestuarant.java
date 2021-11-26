@@ -129,7 +129,9 @@ public class findrestuarant extends AppCompatActivity {
                 GetSavedScores();
                 new Randomizer();
                 startActivity(new Intent(findrestuarant.this, rate.class));
-                finish();
+                if(g.BackButton == false){
+                    finish();
+                }
 
 
             } catch (IOException e) {

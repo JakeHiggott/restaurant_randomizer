@@ -32,6 +32,8 @@ public class rate extends AppCompatActivity {
         ArrayList<String> AllName = g.getRestaurantName();
         ArrayList<Integer> RIDs = g.getRestaurantID();
         int SelectedID = RIDs.get(g.getRandomIndex());
+        String imageUrl = image.get(g.getRandomIndex());
+        String name = AllName.get(g.getRandomIndex());
         Bitmap bm = null;
 
         try {
@@ -63,6 +65,7 @@ public class rate extends AppCompatActivity {
         BackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                g.BackButton = true;
                 finish();
             }
         });
@@ -70,7 +73,7 @@ public class rate extends AppCompatActivity {
         Favorites.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                addToFavorites(SelectedID);
+                addToFavorites(SelectedID,name,imageUrl);
             }
         });
 
@@ -78,9 +81,9 @@ public class rate extends AppCompatActivity {
 
     }
 
-    private void addToFavorites(int selectedID) {
+    private void addToFavorites(int selectedID, String name, String imageUrl) {
         DatabaseHelper DB = new DatabaseHelper(this);
-        DB.addFavorites(selectedID);
+        DB.addFavorites(selectedID, name, imageUrl);
     }
 
     void SaveRating(int selectedID){

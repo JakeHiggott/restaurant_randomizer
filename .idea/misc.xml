@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/micha/Documents/GitHub/Restaurant_Randomizer/app/src/main/res/layout/activity_favorites.xml" value="0.2" />
         <entry key="..\:/Users/micha/Documents/GitHub/Restaurant_Randomizer/app/src/main/res/layout/activity_rate.xml" value="0.25" />
+        <entry key="..\:/Users/micha/Documents/GitHub/Restaurant_Randomizer/app/src/main/res/layout/list_item.xml" value="0.25104166666666666" />
         <entry key="..\:/Users/micha/StudioProjects/restaurant_randomizer/app/src/main/res/layout/activity_findrestuarant.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_favorites.xml" value="0.24924012158054712" />
       </map>

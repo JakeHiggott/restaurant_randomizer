@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key, score DOUBLE, inFavorites INTERGER)"); //Uses SQL to create the databse if it doesn't exist
+        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key,name STRING,score DOUBLE, inFavorites INTERGER, photo STRING)"); //Uses SQL to create the databse if it doesn't exist
 
     }
 
@@ -81,12 +81,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return 0;
     }
 
-    public void addFavorites(int RestaurantID){
+    public void addFavorites(int RestaurantID , String name , String photo){
         Open();
         Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
         ContentValues contentValues = new ContentValues();
         contentValues.put("inFavorites",1);
         contentValues.put("RestaurantID",RestaurantID);
+        contentValues.put("name",name);
+        contentValues.put("photo", photo);
         if(cursor.getCount() > 0){
             DB.update("RestaurantData",contentValues,"RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
         }else{
@@ -95,6 +97,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             if (result == -1){
                 Log.e(null,"Insert Failed");
             }
+        }
+    }
+
+    public Cursor getFavorites(){
+        Open();
+        Cursor cursor = DB.rawQuery("Select * from RestaurantData where inFavorites=?", new String[] {String.valueOf(1)});
+        if(cursor.getCount() > 0){
+            return cursor;
+        }else{
+            return null;
         }
     }
 
