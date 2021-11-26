@@ -100,6 +100,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    public void removeFavorites(int RestaurantID){
+        Open();
+        Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
+        if(cursor.getCount() > 0){
+            cursor.moveToFirst();
+            ContentValues contentValues = new ContentValues();
+            contentValues.put("inFavorites",0);
+            DB.update("RestaurantData",contentValues,"RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
+        }
+    }
+
     public Cursor getFavorites(){
         Open();
         Cursor cursor = DB.rawQuery("Select * from RestaurantData where inFavorites=?", new String[] {String.valueOf(1)});

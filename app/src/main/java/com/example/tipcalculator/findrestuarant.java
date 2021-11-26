@@ -45,8 +45,6 @@ public class findrestuarant extends AppCompatActivity {
 
         switch1 = findViewById(R.id.switch1);
         textView5 = findViewById(R.id.textView5);
-        textView12 = findViewById(R.id.textView12);
-        textView13 = findViewById(R.id.textView13);
         loadingTextView = findViewById(R.id.loadingTextView);
         Button button = findViewById(R.id.frSearchButton);
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -123,8 +121,6 @@ public class findrestuarant extends AppCompatActivity {
                 List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
                 g.setLatitude(addresses.get(0).getLatitude());
                 g.setLongitude(addresses.get(0).getLongitude());
-                textView12.setText("TEMPORARY Latitude: " + addresses.get(0).getLatitude());
-                textView13.setText("TEMPORARY Longitude: " + addresses.get(0).getLongitude());
                 new API();
                 GetSavedScores();
                 new Randomizer();

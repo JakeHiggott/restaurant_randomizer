@@ -15,6 +15,9 @@ public class Globals {
     private double Latitude;
     private int RandomIndex;
     public boolean BackButton = false;
+    public String FavUrl;
+    public String FavName;
+    public int FavID;
 
 
     private Globals(){}

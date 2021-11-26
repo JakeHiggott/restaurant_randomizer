@@ -23,6 +23,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/refreshButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="204dp"
+        android:layout_marginTop="12dp"
+        android:text="refresh"
+        app:layout_constraintStart_toEndOf="@+id/favoritesBackButton"
         app:layout_constraintTop_toTopOf="parent" /><![CDATA[
 
     "       android:scrollbars="vertical"/>

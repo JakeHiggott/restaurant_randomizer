@@ -1,7 +1,10 @@
 package com.example.tipcalculator;
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,11 +22,13 @@ import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
+    private ArrayList<Integer> mID = new ArrayList<>();
     private ArrayList<String> mImageNames = new ArrayList<>();
     private ArrayList<String> mImages = new ArrayList<>();
     private Context context;
 
-    public Adapter(Context context, ArrayList<String> mImageNames, ArrayList<String> mImages) {
+    public Adapter(Context context,ArrayList<Integer> mID ,ArrayList<String> mImageNames, ArrayList<String> mImages) {
+        this.mID = mID;
         this.mImageNames = mImageNames;
         this.mImages = mImages;
         this.context = context;
@@ -51,6 +56,13 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             @Override
             public void onClick(View view) {
                 Log.d(null, "Clicked on "+ mImageNames.get(position));
+                Globals g = Globals.getInstance();
+                g.FavID = mID.get(position);
+                g.FavName = mImageNames.get(position);
+                g.FavUrl = mImages.get(position);
+                Context context = view.getContext();
+                final Intent intent = new Intent(context,restuarantpage.class);
+                context.startActivity(intent);
             }
         });
     }
