@@ -2,10 +2,8 @@ package com.example.tipcalculator;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.Application;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +14,6 @@ import android.widget.TextView;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
@@ -69,9 +66,21 @@ public class rate extends AppCompatActivity {
                 finish();
             }
         });
+        Button Favorites = findViewById(R.id.FavoritesButton);
+        Favorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToFavorites(SelectedID);
+            }
+        });
 
 
 
+    }
+
+    private void addToFavorites(int selectedID) {
+        DatabaseHelper DB = new DatabaseHelper(this);
+        DB.addFavorites(selectedID);
     }
 
     void SaveRating(int selectedID){

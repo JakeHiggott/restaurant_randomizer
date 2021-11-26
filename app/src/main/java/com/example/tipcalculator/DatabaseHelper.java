@@ -19,7 +19,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key, score DOUBLE)");
+        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key, score DOUBLE, inFavorites INTERGER)"); //Uses SQL to create the databse if it doesn't exist
 
     }
 
@@ -28,16 +28,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DB.execSQL("drop Table if exists RestaurantData");
     }
 
-    public void Open() throws SQLException {
-
+    public void Open() throws SQLException {                                                        //Opens the database for read or write, is getwritable because that has the most privileges
         DB = this.getWritableDatabase();
     }
 
-    public void Close(){
-        DB.close();
-    }
-
-    public Boolean insertData(int RestaurantID,double score ){
+    public Boolean insertData(int RestaurantID,double score ){  //Uses the restaurantID from the API to insert a new score into the database
         Open();
         ContentValues contentValues = new ContentValues();
         contentValues.put("RestaurantID",RestaurantID);
@@ -50,7 +45,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
-    public Boolean updateData(int RestaurantID,double score ) {
+    public Boolean updateData(int RestaurantID,double score ) { //uses RestaurantID to increase or decrease the rating from the user
         int location = 0;
         Open();
         Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
@@ -67,7 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             contentValues.put("score", NewScore);
             cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
             if (cursor.getCount() > 0) {
-                long result = DB.update("RestaurantData", contentValues, "RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
+                DB.update("RestaurantData", contentValues, "RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
                 return true;
             }else{
                 return false;
@@ -75,16 +70,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     }
 
-
-
-
-    public Cursor getData(){
-        Open();
-        Cursor cursor = DB.rawQuery("Select * from RestaurantData",null);
-        return cursor;
-    }
-
-    public double getScores(int RestaurantID){
+    public double getScores(int RestaurantID){  //gets the score that match a RestaurantID if one exists
         Open();
         Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
         if(cursor.moveToFirst()){
@@ -95,16 +81,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return 0;
     }
 
-    public boolean checkScore() {
+    public void addFavorites(int RestaurantID){
+        Open();
+        Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("inFavorites",1);
+        contentValues.put("RestaurantID",RestaurantID);
+        if(cursor.getCount() > 0){
+            DB.update("RestaurantData",contentValues,"RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
+        }else{
 
-            Open();
-            Cursor cursor = DB.rawQuery("Select * from RestaurantData", null);
-            if (cursor.moveToFirst()) {
-                return true;
-            }else{
-                return false;
+            long result = DB.insert("RestaurantData",null,contentValues);
+            if (result == -1){
+                Log.e(null,"Insert Failed");
             }
-
-
+        }
     }
+
 }

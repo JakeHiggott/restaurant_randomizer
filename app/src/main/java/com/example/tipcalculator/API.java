@@ -21,6 +21,7 @@ public class API {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
 
+            //uncomment comment block below before final testing
             /*OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
