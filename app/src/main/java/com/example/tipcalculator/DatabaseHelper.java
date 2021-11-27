@@ -1,15 +1,13 @@
 package com.example.tipcalculator;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.graphics.Path;
 import android.util.Log;
-
-import androidx.annotation.Nullable;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     SQLiteDatabase DB;
@@ -19,7 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key,name STRING,score DOUBLE, inFavorites INTERGER, photo STRING)"); //Uses SQL to create the databse if it doesn't exist
+        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key,name STRING,score DOUBLE, inFavorites INTERGER, photo STRING)"); //Uses SQL to create the database if it doesn't exist
 
     }
 
@@ -32,23 +30,20 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DB = this.getWritableDatabase();
     }
 
-    public Boolean insertData(int RestaurantID,double score ){  //Uses the restaurantID from the API to insert a new score into the database
+    public void insertData(int RestaurantID, double score ){  //Uses the restaurantID from the API to insert a new score into the database
         Open();
         ContentValues contentValues = new ContentValues();
         contentValues.put("RestaurantID",RestaurantID);
         contentValues.put("score",score);
-        long result = DB.insert("RestaurantData",null,contentValues);
-        if (result == -1){
-            return false;
-        }else {
-            return true;
-        }
+        DB.insert("RestaurantData",null,contentValues);
+
     }
 
-    public Boolean updateData(int RestaurantID,double score ) { //uses RestaurantID to increase or decrease the rating from the user
-        int location = 0;
+    @SuppressLint("Recycle")
+    public Boolean updateData(int RestaurantID, double score ) { //uses RestaurantID to increase or decrease the rating from the user
+        int location;
         Open();
-        Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
+        @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
 
 
             if(cursor.moveToFirst()){
@@ -72,10 +67,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public double getScores(int RestaurantID){  //gets the score that match a RestaurantID if one exists
         Open();
-        Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
+        @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select score from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
         if(cursor.moveToFirst()){
-            double score = cursor.getDouble(0);
-            return score;
+            return cursor.getDouble(0);
         }
 
         return 0;
@@ -83,7 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void addFavorites(int RestaurantID , String name , String photo){
         Open();
-        Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
+        @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
         ContentValues contentValues = new ContentValues();
         contentValues.put("inFavorites",1);
         contentValues.put("RestaurantID",RestaurantID);
@@ -102,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     public void removeFavorites(int RestaurantID){
         Open();
-        Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
+        @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
         if(cursor.getCount() > 0){
             cursor.moveToFirst();
             ContentValues contentValues = new ContentValues();

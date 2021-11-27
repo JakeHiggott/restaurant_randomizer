@@ -1,15 +1,14 @@
 package com.example.tipcalculator;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -54,28 +53,17 @@ public class rate extends AppCompatActivity {
         Rating.setRating(3);
 
         Button SaveButton = findViewById(R.id.button5);
-        SaveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                SaveRating(SelectedID);
-                finish();
-            }
+        SaveButton.setOnClickListener(view -> {
+            SaveRating(SelectedID);
+            finish();
         });
         Button BackButton = findViewById(R.id.rateBackButton);
-        BackButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                g.BackButton = true;
-                finish();
-            }
+        BackButton.setOnClickListener(view -> {
+            g.BackButton = true;
+            finish();
         });
         Button Favorites = findViewById(R.id.FavoritesButton);
-        Favorites.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                addToFavorites(SelectedID,name,imageUrl);
-            }
-        });
+        Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl));
 
 
 
@@ -88,7 +76,6 @@ public class rate extends AppCompatActivity {
 
     void SaveRating(int selectedID){
         RatingBar Rating = findViewById(R.id.ratingBar2);
-        Globals g = Globals.getInstance();
         DatabaseHelper DB = new DatabaseHelper(this);
         double score = 0;
         if(Rating.getRating()==1){

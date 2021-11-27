@@ -2,17 +2,11 @@ package com.example.tipcalculator;
 
 
 
-import static com.google.android.material.internal.ContextUtils.getActivity;
-
-import android.app.Activity;
-import android.app.Application;
-import android.content.Context;
-import android.content.Intent;
-import android.database.Cursor;
-import android.database.SQLException;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -22,35 +16,34 @@ public class Randomizer extends AppCompatActivity {
         Globals g = Globals.getInstance();
         ArrayList<Integer> Selected =  g.getRestaurantID();
         ArrayList<Double> weights = new ArrayList<>();
-        ArrayList<Double> Saved = g.getChoosenScores();
+        ArrayList<Double> Saved = g.getChosenScores();
 
         double check = 0;
         int size = Selected.size();
 
-        double OChance = 100/size;
-        for(int i = 0; i != Selected.size();i++){
-            int RID = Selected.get(i);
-
-                double scale = OChance* Saved.get(RID);
+        if(size > 0) {
+            double OChance = 100 / size;
+            for (int i = 0; i != Selected.size(); i++) {
+                double scale = OChance * Saved.get(i);
                 double NChance = OChance + scale;
                 weights.add(NChance);
                 check = NChance + check;
+            }
 
 
+            if (check != 100) {
+                double evening = 100 - check;
+                double error = evening / size;
+                for (int j = 0; j != size; j++) {
+                    weights.set(j, (weights.get(j) + error));
+                }
+            }
+
+            int SelectedIndex = ChooseRandom(weights);
+            g.setRandomIndex(SelectedIndex);
+        }else{
+            Log.d(null,"RestaurantID size is 0");
         }
-
-
-        if(check != 100){
-           double evening = 100-check;
-           double error = evening/size;
-           for(int j = 0; j != size; j++){
-               weights.set(j,(weights.get(j) + error));
-           }
-        }
-
-        int SelectedIndex = ChooseRandom(weights);
-        g.setRandomIndex(SelectedIndex);
-
 
 
 
@@ -58,19 +51,27 @@ public class Randomizer extends AppCompatActivity {
 
     private int ChooseRandom(ArrayList<Double> weights) {
 
-        int indexSelection = 0;
+        int indexSelection;
         int index = 0;
         Random rand = new Random();
-        int RandNum = rand.nextInt(101);
+        double RandNum = rand.nextInt(101);
         double AddAmount=0;
 
-        for(int k=1;k != 100; k++){
-            if(RandNum == k){
+        BigDecimal Ran = new BigDecimal(String.valueOf(RandNum));
+
+
+        BigDecimal adding = new BigDecimal(String.valueOf(AddAmount));
+        BigDecimal point = new BigDecimal("0.1");
+
+
+        for(BigDecimal k = BigDecimal.valueOf(1); !k.equals(BigDecimal.valueOf(101)) ; k = k.add(point)){
+            BigDecimal weight = new BigDecimal(String.valueOf(weights.get(index)));
+            if(k.equals(Ran)){
                 indexSelection = index;
                 return indexSelection;
             }
-            if(k == weights.get(index) + AddAmount){
-                AddAmount = weights.get(index) + AddAmount;
+            if(k.equals(weight.add(adding))){
+                adding = adding.add(weight);
                 index++;
             }
         }

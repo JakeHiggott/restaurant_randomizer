@@ -1,16 +1,13 @@
 package com.example.tipcalculator;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Globals {
     private static Globals instance;
-    private ArrayList<Integer> RestaurantID;
-    private ArrayList<String> RestaurantName;
-    private ArrayList<Double> Restaurantlat;
-    private ArrayList<Double> Restaurantlongi;
-    private ArrayList<String> RestaurantPhoto;
-    private ArrayList<Double> ChoosenScores;
+    private ArrayList<Integer> RestaurantID = new ArrayList<>();
+    private ArrayList<String> RestaurantName = new ArrayList<>();
+    private ArrayList<String> RestaurantPhoto = new ArrayList<>();
+    private ArrayList<Double> ChosenScores = new ArrayList<>();
     private double Longitude;
     private double Latitude;
     private int RandomIndex;
@@ -33,32 +30,22 @@ public class Globals {
         this.RestaurantName = restaurantName;
     }
 
-    public void setChoosenScores(ArrayList<Double> choosenScores) {
-        ChoosenScores = choosenScores;
+    public void setChosenScores(ArrayList<Double> chosenScores) {
+        ChosenScores = chosenScores;
     }
 
-    public ArrayList<Double> getChoosenScores() {
-        return ChoosenScores;
+    public ArrayList<Double> getChosenScores() {
+        return ChosenScores;
     }
 
     public ArrayList<String> getRestaurantName(){
         return this.RestaurantName;
     }
 
-    public void setRestaurantlat(ArrayList<Double> l){
-        this.Restaurantlat = l;
+    public void setRestaurantlat(){
     }
 
-    public ArrayList<Double> getRestaurant(){
-        return this.Restaurantlat;
-    }
-
-    public void setRestaurantlongi(ArrayList<Double> l){
-        this.Restaurantlongi = l;
-    }
-
-    public List<Double> getRestaurantlongi(){
-        return this.Restaurantlongi;
+    public void setRestaurantlongi(){
     }
 
     public void setRestaurantPhoto(ArrayList<String> p){

@@ -1,25 +1,21 @@
 package com.example.tipcalculator;
 
+import android.annotation.SuppressLint;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.annotation.SuppressLint;
-import android.content.Intent;
-import android.database.Cursor;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 
 public class favorites extends AppCompatActivity {
 
-    Globals g = Globals.getInstance();
-    private ArrayList<Integer> mID = new ArrayList<>();
-    private ArrayList<String> mNames = new ArrayList<>();
-    private  ArrayList<String> mImageUrls = new ArrayList<>();
+    private final ArrayList<Integer> mID = new ArrayList<>();
+    private final ArrayList<String> mNames = new ArrayList<>();
+    private final ArrayList<String> mImageUrls = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,24 +26,16 @@ public class favorites extends AppCompatActivity {
         initRecyclerView();
 
         Button refresh = findViewById(R.id.refreshButton);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mID.clear();
-                mNames.clear();
-                mImageUrls.clear();
-                refresh();
-                initRecyclerView();
-            }
+        refresh.setOnClickListener(view -> {
+            mID.clear();
+            mNames.clear();
+            mImageUrls.clear();
+            refresh();
+            initRecyclerView();
         });
 
         Button Back = findViewById(R.id.favoritesBackButton);
-        Back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        Back.setOnClickListener(view -> finish());
 
 
     }

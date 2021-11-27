@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecView"
@@ -19,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.003"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="204dp"
         android:layout_marginTop="12dp"
-        android:text="refresh"
+        android:text="@string/refresh"
         app:layout_constraintStart_toEndOf="@+id/favoritesBackButton"
         app:layout_constraintTop_toTopOf="parent" /><![CDATA[
 

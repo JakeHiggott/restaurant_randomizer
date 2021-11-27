@@ -2,7 +2,17 @@ package com.example.tipcalculator;
 
 import android.os.StrictMode;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
+
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
 public class API {
 
@@ -22,7 +32,7 @@ public class API {
             StrictMode.setThreadPolicy(policy);
 
             //uncomment comment block below before final testing
-            /*OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
                     .url("https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude="+ lat +"&longitude=" + longi + "&distance=1&open_now=true&lunit=mi")
@@ -40,23 +50,27 @@ public class API {
                 JSONArray DataArray = JO.getJSONArray("data");
                 for (int i=0;i != DataArray.length();i++){
                     JSONObject RID = DataArray.getJSONObject(i);
-                    JSONObject PhotoP = RID.getJSONObject("photo");
-                    JSONObject imageP = PhotoP.getJSONObject("images");
-                    JSONObject thumbP = imageP.getJSONObject("thumbnail");
                     RestaurantId.add(Integer.valueOf(RID.getString("location_id")));
                     RestaurantName.add(RID.getString("name"));
                     Restaurantlat.add(Double.valueOf(RID.getString("latitude")));
                     Restaurantlongi.add(Double.valueOf(RID.getString("longitude")));
-                    RestaurantPhoto.add(thumbP.getString("url"));
+                    try{
+                        JSONObject PhotoP = RID.getJSONObject("photo");
+                        JSONObject imageP = PhotoP.getJSONObject("images");
+                        JSONObject thumbP = imageP.getJSONObject("thumbnail");
+                        RestaurantPhoto.add(thumbP.getString("url"));
+                    }catch (JSONException e){
+                        e.printStackTrace();
+                        RestaurantPhoto.add("null");
+                    }
+
                 }
             } catch (JSONException | IOException e) {
-                return false;
                 e.printStackTrace();
             }
-*/
 
             //temporary data
-            RestaurantId.add(00000);
+            /*RestaurantId.add(00000);
             RestaurantName.add("Testing1");
             Restaurantlat.add(37.45);
             Restaurantlongi.add(150.7);
@@ -66,12 +80,12 @@ public class API {
             RestaurantName.add("Testing2");
             Restaurantlat.add(60.55);
             Restaurantlongi.add(40.23);
-            RestaurantPhoto.add("random2");
+            RestaurantPhoto.add("random2");*/
 
             g.setRestaurantID(RestaurantId);
             g.setRestaurantName(RestaurantName);
-            g.setRestaurantlat(Restaurantlat);
-            g.setRestaurantlongi(Restaurantlongi);
+            g.setRestaurantlat();
+            g.setRestaurantlongi();
             g.setRestaurantPhoto(RestaurantPhoto);
 
 

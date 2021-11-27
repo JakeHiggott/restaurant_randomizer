@@ -11,8 +11,8 @@
         android:layout_width="197dp"
         android:layout_height="152dp"
         android:layout_marginBottom="404dp"
-        android:text="Search"
-        android:textSize="30dp"
+        android:text="@string/search"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -22,7 +22,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
-        android:text="Location"
+        android:text="@string/location"
         app:layout_constraintBottom_toTopOf="@+id/switch1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Back"
+        android:text="@string/back"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.105"
         app:layout_constraintStart_toStartOf="parent"
@@ -49,9 +49,10 @@
         android:minWidth="48dp"
         android:minHeight="48dp"
         android:showText="false"
-        android:text="Change Location"
+        android:text="@string/change_location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="UseSwitchCompatOrMaterialXml" />
 
     <TextView
         android:id="@+id/textView5"
@@ -59,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="85dp"
         android:gravity="center"
-        android:text="Use current location"
+        android:text="@string/use_current_location"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/switch1" />
@@ -71,7 +72,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginTop="236dp"
         android:gravity="center"
-        android:text="Loading"
+        android:text="@string/loading"
         android:textSize="48sp"
         android:visibility="invisible"
         app:layout_constraintStart_toStartOf="parent"

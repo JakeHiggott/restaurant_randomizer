@@ -1,7 +1,5 @@
 package com.example.tipcalculator;
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -22,10 +20,10 @@ import java.util.ArrayList;
 
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    private ArrayList<Integer> mID = new ArrayList<>();
-    private ArrayList<String> mImageNames = new ArrayList<>();
-    private ArrayList<String> mImages = new ArrayList<>();
-    private Context context;
+    private final ArrayList<Integer> mID;
+    private final ArrayList<String> mImageNames;
+    private final ArrayList<String> mImages;
+    private final Context context;
 
     public Adapter(Context context,ArrayList<Integer> mID ,ArrayList<String> mImageNames, ArrayList<String> mImages) {
         this.mID = mID;
@@ -38,8 +36,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_item,parent,false);
-        ViewHolder holder = new ViewHolder(view);
-        return holder;
+        return new ViewHolder(view);
     }
 
     @Override
@@ -52,18 +49,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
         holder.imageName.setText(mImageNames.get(position));
 
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(null, "Clicked on "+ mImageNames.get(position));
-                Globals g = Globals.getInstance();
-                g.FavID = mID.get(position);
-                g.FavName = mImageNames.get(position);
-                g.FavUrl = mImages.get(position);
-                Context context = view.getContext();
-                final Intent intent = new Intent(context,restuarantpage.class);
-                context.startActivity(intent);
-            }
+        holder.parentLayout.setOnClickListener(view -> {
+            Log.d(null, "Clicked on "+ mImageNames.get(position));
+            Globals g = Globals.getInstance();
+            g.FavID = mID.get(position);
+            g.FavName = mImageNames.get(position);
+            g.FavUrl = mImages.get(position);
+            Context context = view.getContext();
+            final Intent intent = new Intent(context, restaurantpage.class);
+            context.startActivity(intent);
         });
     }
 
@@ -72,7 +66,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
         return mImageNames.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
         ImageView image;
         TextView imageName;

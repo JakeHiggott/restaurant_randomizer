@@ -12,7 +12,8 @@
         android:label="Restaurant Randomizer"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TipCalculator">
+        android:theme="@style/Theme.TipCalculator"
+        android:fullBackupContent="@xml/backup_descriptor">
         <activity
             android:name=".settings"
             android:exported="true" />
@@ -23,10 +24,10 @@
             android:name=".rate"
             android:exported="true" />
         <activity
-            android:name=".restuarantpage"
+            android:name=".restaurantpage"
             android:exported="true" />
         <activity
-            android:name=".findrestuarant"
+            android:name=".findrestaurant"
             android:exported="true" />
         <activity
             android:name=".MainActivity"
