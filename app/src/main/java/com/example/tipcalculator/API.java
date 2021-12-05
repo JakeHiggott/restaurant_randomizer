@@ -84,8 +84,8 @@ public class API {
 
             g.setRestaurantID(RestaurantId);
             g.setRestaurantName(RestaurantName);
-            g.setRestaurantlat();
-            g.setRestaurantlongi();
+            g.setRestaurantlat(Restaurantlat);
+            g.setRestaurantlongi(Restaurantlongi);
             g.setRestaurantPhoto(RestaurantPhoto);
 
 

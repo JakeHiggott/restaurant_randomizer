@@ -1,8 +1,10 @@
 package com.example.tipcalculator;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -79,6 +81,17 @@ public class restaurantpage extends AppCompatActivity {
 
 
 
+        });
+
+        Button launch_btn = findViewById(R.id.launch);
+        launch_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri navigationIntentUri = Uri.parse("google.navigation:q=" + g.getRestaurantLatitude() + "," + g.getRestaurantLongitude());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }
         });
 
     }

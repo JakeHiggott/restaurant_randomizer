@@ -18,7 +18,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key,name STRING,score DOUBLE, inFavorites INTERGER, photo STRING)"); //Uses SQL to create the database if it doesn't exist
-
     }
 
     @Override
