@@ -69,8 +69,6 @@ public class rate extends AppCompatActivity {
         Button Favorites = findViewById(R.id.FavoritesButton);
         Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl,rLat,rLong));
 
-
-
     }
 
     private void addToFavorites(int selectedID, String name, String imageUrl, Double rLat, Double rLong) {

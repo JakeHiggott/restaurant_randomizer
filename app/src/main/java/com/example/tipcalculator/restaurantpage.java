@@ -87,7 +87,7 @@ public class restaurantpage extends AppCompatActivity {
         launch_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Uri navigationIntentUri = Uri.parse("google.navigation:q=" + g.getRestaurantLatitude() + "," + g.getRestaurantLongitude());
+                Uri navigationIntentUri = Uri.parse("google.navigation:q=" + g.FavLat + "," + g.FavLong);
                 Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
                 mapIntent.setPackage("com.google.android.apps.maps");
                 startActivity(mapIntent);

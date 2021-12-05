@@ -16,6 +16,8 @@ public class favorites extends AppCompatActivity {
     private final ArrayList<Integer> mID = new ArrayList<>();
     private final ArrayList<String> mNames = new ArrayList<>();
     private final ArrayList<String> mImageUrls = new ArrayList<>();
+    private final ArrayList<Double> mLat = new ArrayList<>();
+    private final ArrayList<Double> mLong = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,8 @@ public class favorites extends AppCompatActivity {
             mID.clear();
             mNames.clear();
             mImageUrls.clear();
+            mLat.clear();
+            mLong.clear();
             refresh();
             initRecyclerView();
         });
@@ -43,7 +47,7 @@ public class favorites extends AppCompatActivity {
 
     private void initRecyclerView(){
         RecyclerView Rec = findViewById(R.id.RecView);
-        Adapter adapter = new Adapter(this,mID,mNames,mImageUrls);
+        Adapter adapter = new Adapter(this,mID,mNames,mImageUrls,mLat,mLong);
         Rec.setAdapter(adapter);
         Rec.setLayoutManager(new LinearLayoutManager(this));
     }
@@ -58,9 +62,14 @@ public class favorites extends AppCompatActivity {
                 @SuppressLint("Range") int ID = cursor.getInt(cursor.getColumnIndex("RestaurantID"));
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex("name"));
                 @SuppressLint("Range") String Image = cursor.getString(cursor.getColumnIndex("photo"));
+                @SuppressLint("Range") double lati = cursor.getDouble(cursor.getColumnIndex("rLAT"));
+                @SuppressLint("Range") double longi = cursor.getDouble(cursor.getColumnIndex("rLONG"));
+
                 mID.add(ID);
                 mNames.add(name);
                 mImageUrls.add(Image);
+                mLat.add(lati);
+                mLong.add(longi);
 
             }
         }

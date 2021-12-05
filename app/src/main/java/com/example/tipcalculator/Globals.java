@@ -18,6 +18,8 @@ public class Globals {
     public String FavUrl;
     public String FavName;
     public int FavID;
+    public double FavLat;
+    public double FavLong;
 
 
     private Globals(){}
