@@ -30,9 +30,13 @@ public class rate extends AppCompatActivity {
         ArrayList<String> image = g.getRestaurantPhoto();
         ArrayList<String> AllName = g.getRestaurantName();
         ArrayList<Integer> RIDs = g.getRestaurantID();
+        ArrayList<Double> aLat = g.getRestaurantLatitude();
+        ArrayList<Double> aLong = g.getRestaurantLongitude();
         int SelectedID = RIDs.get(g.getRandomIndex());
         String imageUrl = image.get(g.getRandomIndex());
         String name = AllName.get(g.getRandomIndex());
+        Double rLat = aLat.get(g.getRandomIndex());
+        Double rLong = aLong.get(g.getRandomIndex());
         Bitmap bm = null;
 
         try {
@@ -63,15 +67,15 @@ public class rate extends AppCompatActivity {
             finish();
         });
         Button Favorites = findViewById(R.id.FavoritesButton);
-        Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl));
+        Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl,rLat,rLong));
 
 
 
     }
 
-    private void addToFavorites(int selectedID, String name, String imageUrl) {
+    private void addToFavorites(int selectedID, String name, String imageUrl, Double rLat, Double rLong) {
         DatabaseHelper DB = new DatabaseHelper(this);
-        DB.addFavorites(selectedID, name, imageUrl);
+        DB.addFavorites(selectedID, name, imageUrl, rLat, rLong);
     }
 
     void SaveRating(int selectedID){
