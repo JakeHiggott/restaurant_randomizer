@@ -17,8 +17,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase DB) {
-        DB.execSQL("create Table RestaurantData(RestaurantID INTERGER primary key,name STRING,score DOUBLE, inFavorites INTERGER, photo STRING)"); //Uses SQL to create the database if it doesn't exist
-
+        DB.execSQL("create Table RestaurantData(RestaurantID INTEGER primary key,name STRING,score DOUBLE, inFavorites INTEGER, photo STRING, rLAT DOUBLE, rLONG DOUBLE)"); //Uses SQL to create the database if it doesn't exist
     }
 
     @Override
@@ -75,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return 0;
     }
 
-    public void addFavorites(int RestaurantID , String name , String photo){
+    public void addFavorites(int RestaurantID , String name , String photo, Double Lat, Double longi){
         Open();
         @SuppressLint("Recycle") Cursor cursor = DB.rawQuery("Select * from RestaurantData where RestaurantID=?",new String[] {String.valueOf(RestaurantID)});
         ContentValues contentValues = new ContentValues();
@@ -83,6 +82,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put("RestaurantID",RestaurantID);
         contentValues.put("name",name);
         contentValues.put("photo", photo);
+        contentValues.put("rLAT", Lat);
+        contentValues.put("rLONG", longi);
         if(cursor.getCount() > 0){
             DB.update("RestaurantData",contentValues,"RestaurantID=?", new String[]{String.valueOf(RestaurantID)});
         }else{

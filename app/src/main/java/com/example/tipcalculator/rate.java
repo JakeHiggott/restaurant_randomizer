@@ -1,8 +1,11 @@
 package com.example.tipcalculator;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -30,9 +33,13 @@ public class rate extends AppCompatActivity {
         ArrayList<String> image = g.getRestaurantPhoto();
         ArrayList<String> AllName = g.getRestaurantName();
         ArrayList<Integer> RIDs = g.getRestaurantID();
+        ArrayList<Double> aLat = g.getRestaurantLatitude();
+        ArrayList<Double> aLong = g.getRestaurantLongitude();
         int SelectedID = RIDs.get(g.getRandomIndex());
         String imageUrl = image.get(g.getRandomIndex());
         String name = AllName.get(g.getRandomIndex());
+        Double rLat = aLat.get(g.getRandomIndex());
+        Double rLong = aLong.get(g.getRandomIndex());
         Bitmap bm = null;
 
         try {
@@ -57,21 +64,23 @@ public class rate extends AppCompatActivity {
             SaveRating(SelectedID);
             finish();
         });
-        Button BackButton = findViewById(R.id.rateBackButton);
-        BackButton.setOnClickListener(view -> {
-            g.BackButton = true;
-            finish();
-        });
+
         Button Favorites = findViewById(R.id.FavoritesButton);
-        Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl));
+        Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl,rLat,rLong));
 
-
+        Button Directions = findViewById(R.id.button);
+        Directions.setOnClickListener(v -> {
+            Uri navigationIntentUri = Uri.parse("google.navigation:q=" + rLat + "," + rLong);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        });
 
     }
 
-    private void addToFavorites(int selectedID, String name, String imageUrl) {
+    private void addToFavorites(int selectedID, String name, String imageUrl, Double rLat, Double rLong) {
         DatabaseHelper DB = new DatabaseHelper(this);
-        DB.addFavorites(selectedID, name, imageUrl);
+        DB.addFavorites(selectedID, name, imageUrl, rLat, rLong);
     }
 
     void SaveRating(int selectedID){

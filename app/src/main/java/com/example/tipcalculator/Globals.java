@@ -8,6 +8,9 @@ public class Globals {
     private ArrayList<String> RestaurantName = new ArrayList<>();
     private ArrayList<String> RestaurantPhoto = new ArrayList<>();
     private ArrayList<Double> ChosenScores = new ArrayList<>();
+    private ArrayList<Double> RestaurantLatitude = new ArrayList<>();
+    private ArrayList<Double> RestaurantLongitude = new ArrayList<>();
+
     private double Longitude;
     private double Latitude;
     private int RandomIndex;
@@ -15,6 +18,9 @@ public class Globals {
     public String FavUrl;
     public String FavName;
     public int FavID;
+    public double FavLat;
+    public double FavLong;
+    public int zip;
 
 
     private Globals(){}
@@ -42,10 +48,20 @@ public class Globals {
         return this.RestaurantName;
     }
 
-    public void setRestaurantlat(){
+    public void setRestaurantlat(ArrayList<Double> restaurantlat){
+        this.RestaurantLatitude = restaurantlat;
     }
 
-    public void setRestaurantlongi(){
+    public void setRestaurantlongi(ArrayList<Double> restaurantlongi){
+        this.RestaurantLongitude = restaurantlongi;
+    }
+
+    public ArrayList<Double> getRestaurantLatitude(){
+        return RestaurantLatitude;
+    }
+
+    public ArrayList<Double> getRestaurantLongitude() {
+        return RestaurantLongitude;
     }
 
     public void setRestaurantPhoto(ArrayList<String> p){

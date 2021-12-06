@@ -8,35 +8,36 @@
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="222dp"
-        android:layout_height="188dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="74dp"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background"
         android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toTopOf="@+id/launch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rName"
+        app:srcCompat="@drawable/ic_launcher_background"
         tools:ignore="ContentDescription" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/launch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="35dp"
         android:layout_marginBottom="24dp"
         android:text="@string/get_directions"
         app:layout_constraintBottom_toTopOf="@+id/RemoveFav"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="@+id/RemoveFav"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <Button
         android:id="@+id/rpBackButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="15dp"
         android:text="@string/back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.049"
+        app:layout_constraintBottom_toTopOf="@+id/rName"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,21 +45,24 @@
         android:id="@+id/RemoveFav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="88dp"
         android:layout_marginBottom="189dp"
         android:text="@string/remove_from_favorites"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/launch" />
 
     <TextView
         android:id="@+id/rName"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="25dp"
         android:gravity="center"
         android:text="@string/restaurantname"
-        android:textSize="20sp"
+        android:textSize="34sp"
         app:layout_constraintBottom_toTopOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rpBackButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
