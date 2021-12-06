@@ -14,6 +14,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
+//Declare API class
 public class API {
 
         ArrayList<Integer> RestaurantId = new ArrayList<>();
@@ -24,6 +25,7 @@ public class API {
 
 
         API(){
+            //declare latitude and longitude
             double lat,longi;
             Globals g = Globals.getInstance();
             lat = g.getLatitude();
@@ -34,6 +36,7 @@ public class API {
             //uncomment comment block below before final testing
             OkHttpClient client = new OkHttpClient();
 
+            //build a request with lat and long data
             Request request = new Request.Builder()
                     .url("https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude="+ lat +"&longitude=" + longi + "&distance=1&open_now=true&lunit=mi")
                     .get()
@@ -41,7 +44,7 @@ public class API {
                     .addHeader("x-rapidapi-key", "cd241becc4msh5b28c628534ff6cp123f66jsnafb8b78e56b4")
                     .build();
 
-
+            //gather data from the response
             try {
                 Response response = client.newCall(request).execute();
                 String obj = Objects.requireNonNull(response.body()).string();
@@ -55,6 +58,7 @@ public class API {
                     Restaurantlat.add(Double.valueOf(RID.getString("latitude")));
                     Restaurantlongi.add(Double.valueOf(RID.getString("longitude")));
                     try{
+                        //capture data from JSON object retrieved in the response
                         JSONObject PhotoP = RID.getJSONObject("photo");
                         JSONObject imageP = PhotoP.getJSONObject("images");
                         JSONObject thumbP = imageP.getJSONObject("thumbnail");
@@ -65,6 +69,7 @@ public class API {
                     }
 
                 }
+              //protect app from breaking by preventing relevant exceptions
             } catch (JSONException | IOException e) {
                 e.printStackTrace();
             }
