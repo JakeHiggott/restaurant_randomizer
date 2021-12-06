@@ -13,6 +13,8 @@ import java.util.Random;
 
 public class Randomizer extends AppCompatActivity {
     Randomizer(){
+        
+        //declare variables
         Globals g = Globals.getInstance();
         ArrayList<Integer> Selected =  g.getRestaurantID();
         ArrayList<Double> weights = new ArrayList<>();
@@ -21,6 +23,7 @@ public class Randomizer extends AppCompatActivity {
         double check = 0;
         int size = Selected.size();
 
+        //check if the selected restaurant contains any elements
         if(size > 0) {
             double OChance = 100 / size;
             for (int i = 0; i != Selected.size(); i++) {
@@ -48,7 +51,8 @@ public class Randomizer extends AppCompatActivity {
 
 
     }
-
+    
+    //create multiple different types of random numbers
     private int ChooseRandom(ArrayList<Double> weights) {
 
         int indexSelection;
