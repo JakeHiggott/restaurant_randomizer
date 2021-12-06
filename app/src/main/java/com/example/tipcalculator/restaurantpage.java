@@ -35,6 +35,7 @@ public class restaurantpage extends AppCompatActivity {
         rName.setText(g.FavName);
         Bitmap bm = null;
 
+        //try to establish a connection with an internet resource through its URL
         try {
             URL url = new URL(g.FavUrl);
             URLConnection connection = url.openConnection();
@@ -47,7 +48,8 @@ public class restaurantpage extends AppCompatActivity {
             e.printStackTrace();
         }
         rImage.setImageBitmap(bm);
-
+        
+        //building buttons for additional functionality
         Button backButton = findViewById(R.id.rpBackButton);
         backButton.setOnClickListener(view -> finish());
 
@@ -59,13 +61,13 @@ public class restaurantpage extends AppCompatActivity {
             LayoutInflater inflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
             @SuppressLint("InflateParams") View popup = inflater.inflate(R.layout.remove_confim,null);
 
-
+            //show pop-up for better visibility for the UI
             final PopupWindow popupWindow = new PopupWindow(popup,800,600, false);
 
             popupWindow.showAtLocation(view, Gravity.CENTER,0,0);
 
 
-
+            //create yes and no buttons for streamlined functionality
             Button yes =  popup.findViewById(R.id.yesButton);
             yes.setOnClickListener(view1 -> {
                 DB.removeFavorites(g1.FavID);
