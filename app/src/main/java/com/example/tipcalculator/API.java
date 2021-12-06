@@ -61,7 +61,7 @@ public class API {
                         //capture data from JSON object retrieved in the response
                         JSONObject PhotoP = RID.getJSONObject("photo");
                         JSONObject imageP = PhotoP.getJSONObject("images");
-                        JSONObject thumbP = imageP.getJSONObject("small");
+                        JSONObject thumbP = imageP.getJSONObject("large");
                         RestaurantPhoto.add(thumbP.getString("url"));
                     }catch (JSONException e){
                         e.printStackTrace();
