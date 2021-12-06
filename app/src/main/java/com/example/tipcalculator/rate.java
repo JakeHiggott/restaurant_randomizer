@@ -1,8 +1,11 @@
 package com.example.tipcalculator;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -61,13 +64,17 @@ public class rate extends AppCompatActivity {
             SaveRating(SelectedID);
             finish();
         });
-        Button BackButton = findViewById(R.id.rateBackButton);
-        BackButton.setOnClickListener(view -> {
-            g.BackButton = true;
-            finish();
-        });
+
         Button Favorites = findViewById(R.id.FavoritesButton);
         Favorites.setOnClickListener(view -> addToFavorites(SelectedID,name,imageUrl,rLat,rLong));
+
+        Button Directions = findViewById(R.id.button);
+        Directions.setOnClickListener(v -> {
+            Uri navigationIntentUri = Uri.parse("google.navigation:q=" + rLat + "," + rLong);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, navigationIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+        });
 
     }
 
