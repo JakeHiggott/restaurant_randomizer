@@ -23,5 +23,7 @@
         android:layout_toEndOf="@id/image"
         android:gravity="center_vertical"
         android:text="@string/temporary"
-        android:textSize="17sp" />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="normal" />
 </RelativeLayout>

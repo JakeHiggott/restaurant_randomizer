@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -54,7 +55,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
                 .into(holder.image);
 
         holder.imageName.setText(mImageNames.get(position));
-
+        if(position % 2 == 0) {
+            holder.itemView.setBackgroundColor(
+                    ContextCompat.getColor(context, R.color.lightTeal)
+            );
+        }
         holder.parentLayout.setOnClickListener(view -> {
             Log.d(null, "Clicked on "+ mImageNames.get(position));
             Globals g = Globals.getInstance();

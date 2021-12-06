@@ -35,7 +35,7 @@ public class API {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
-                    .url("https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude="+ lat +"&longitude=" + longi + "&distance=1&open_now=true&lunit=mi")
+                    .url("https://travel-advisor.p.rapidapi.com/restaurants/list-by-latlng?latitude="+ lat +"&longitude=" + longi + "&distance=3&open_now=true&lunit=mi")
                     .get()
                     .addHeader("x-rapidapi-host", "travel-advisor.p.rapidapi.com")
                     .addHeader("x-rapidapi-key", "cd241becc4msh5b28c628534ff6cp123f66jsnafb8b78e56b4")
@@ -57,7 +57,7 @@ public class API {
                     try{
                         JSONObject PhotoP = RID.getJSONObject("photo");
                         JSONObject imageP = PhotoP.getJSONObject("images");
-                        JSONObject thumbP = imageP.getJSONObject("thumbnail");
+                        JSONObject thumbP = imageP.getJSONObject("small");
                         RestaurantPhoto.add(thumbP.getString("url"));
                     }catch (JSONException e){
                         e.printStackTrace();

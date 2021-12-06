@@ -20,6 +20,7 @@ public class Globals {
     public int FavID;
     public double FavLat;
     public double FavLong;
+    public int zip;
 
 
     private Globals(){}
